@@ -1406,7 +1406,8 @@
                                                         </div>
                                                     </div>
                                                     <div class="flex-grow-1">
-                                                        <p class="text-muted mb-1">Maquette :</p>
+                                                        <p class="text-muted mb-1">  Design extérieur 3D
+                                                            :</p>
                                                         <h5 class="mb-0"><input onclick="m5()" name="m5_CHECK" type="checkbox" id="m5_CHECK"
                                                             {{ old('m5_CHECK') ? 'checked' : '' }}></h5>
                                                     </div>
@@ -1452,6 +1453,7 @@
                             <form method="post" action="{{route('uploabordereau',$upload )}}" enctype="multipart/form-data"
                             class="dropzone" id="dropzone">
                           @csrf
+                          <input type="submit" value="envoyer">
                       </form>
                         </div>
                         <br>
@@ -1463,7 +1465,8 @@
                       </form>
                         </div>
                         <div id="m5" style="display:{{ old('m5_CHECK') ? '' : 'none' }};">
-                            <h5> Télécharger les pièces jointe Maquette</h5>
+                            <h5> Télécharger les pièces jointe  Design extérieur 3D
+                            </h5>
                             <form method="post" action="{{route('uploabordereau',$upload )}}" enctype="multipart/form-data"
                             class="dropzone" id="dropzone">
                           @csrf

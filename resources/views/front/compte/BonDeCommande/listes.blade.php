@@ -1363,7 +1363,10 @@
                                                                     <i class="ri-more-fill align-middle"></i>
                                                                 </button>
                                                                 <ul class="dropdown-menu dropdown-menu-end">
-                                                                    <li><a  href="{{ route('boncom.showPDF', $use->code) }}"class="dropdown-item edit-item-btn"><i
+                                                                    <li><a href="    {{  asset('documentsigne/'.$use->docSig)}}.pdf"target="_blank" class="dropdown-item"type="application/pdf"><i
+                                                                        class="ri-eye-line align-bottom me-2 text-muted"></i>
+                                                                        Visualisation document</a></li>
+                                                                   <!-- <li><a  href="{{ route('boncom.showPDF', $use->code) }}"class="dropdown-item edit-item-btn"><i
                                                                         class="ri-printer-fill align-bottom me-2 text-muted"></i>
                                                                         Imprimer</a></li>
                                                                         <li>
@@ -1386,7 +1389,7 @@
                                                                                 class="ri-eye-line align-bottom me-2 text-muted"></i>
                                                                                 Visualisation document</a></li>
                                                                                 <li> <!--<a href="{{ route('documentsigneEnvoyer', $use->code) }}" class="dropdown-item"><i
-                                                                                    class=" ri-send-plane-fill align-bottom me-2 text-muted">--></i>
+                                                                                    class=" ri-send-plane-fill align-bottom me-2 text-muted"></i>
                                                                                     
                                                                                     <button data-info="{{$use->code}}"
                                                                                     class="dropdown-item " data-bs-toggle="modal" data-bs-target="#successPaymentZ"
@@ -1396,7 +1399,7 @@
                                                                                     Envoyer  </button>
 
                                                                                 </li>
-
+                                                                            -->
                                                                                     
                                                                                     <li><a href="{{ url('DetaillProjetd',$use->code)}}" class="dropdown-item"><i
                                                                                         class=" ri-eye-fill align-bottom me-2 text-muted"></i>
