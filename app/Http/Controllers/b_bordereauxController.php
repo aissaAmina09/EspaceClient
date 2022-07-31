@@ -54,6 +54,7 @@ return view('front.compte.BonDeCommande.DetailProjetnBeforeupload')
     }
     public function uploabordereau(Request $request,$id){
       $b_bon_code=$request->id;
+
       $user=Auth::user()->id; 
       $date = Carbon::now('d F Y'); 
       $co='1';

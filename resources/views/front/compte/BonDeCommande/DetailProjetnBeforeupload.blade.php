@@ -1444,7 +1444,9 @@
                         class="dropzone" id="dropzone">
                       @csrf
                     
-                      
+                      <input type="hidden" name="code_categorie" value="{{$upload}}">
+                      <button type="submit" id="button" class="btn btn-primary">Envoyer</button>
+
                   </form>
                         </div>
                         <br>
@@ -1453,7 +1455,8 @@
                             <form method="post" action="{{route('uploabordereau',$upload )}}" enctype="multipart/form-data"
                             class="dropzone" id="dropzone">
                           @csrf
-                          <input type="submit" value="envoyer">
+                          <input type="hidden" name="code_categorie" value="{{$upload}}">
+                          <button type="submit" id="button" class="btn btn-primary">Envoyer</button>
                       </form>
                         </div>
                         <br>
@@ -1462,6 +1465,8 @@
                             <form method="post" action="{{route('uploabordereau',$upload )}}" enctype="multipart/form-data"
                             class="dropzone" id="dropzone">
                           @csrf
+                          <input type="hidden" name="code_categorie" value="{{$upload}}">
+                          <button type="submit" id="button" class="btn btn-primary">Envoyer</button>
                       </form>
                         </div>
                         <div id="m5" style="display:{{ old('m5_CHECK') ? '' : 'none' }};">
@@ -1470,6 +1475,8 @@
                             <form method="post" action="{{route('uploabordereau',$upload )}}" enctype="multipart/form-data"
                             class="dropzone" id="dropzone">
                           @csrf
+                          <input type="hidden" name="code_categorie" value="{{$upload}}">
+                          <button type="submit" id="button" class="btn btn-primary">Envoyer</button>
                       </form>
 
                             </div>
@@ -1613,6 +1620,7 @@
                             <script type="text/javascript">
                                 Dropzone.options.dropzone =
                                 {
+                                    autoProcessQueue: false,
                                     maxFilesize: 10,
                                     renameFile: function (file) {
                                         var dt = new Date();
@@ -1629,4 +1637,8 @@
                                         return false;
                                     }
                                 };
+                                $("#button").click(function (e) {
+    e.preventDefault();
+    myDropzone.processQueue();
+});
                             </script>
