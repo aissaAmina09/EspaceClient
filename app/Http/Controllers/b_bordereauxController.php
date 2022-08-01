@@ -48,7 +48,7 @@ return view('front.compte.BonDeCommande.DetailProjetnBeforeupload')
      // return $data;
   $dossier= $request->submit;
   $b_bon_code=$request->id;
-       $checker = b_bordereaux::select('code')->where('b_bon_code',$b_bon_code)->exists();//teste existe bordereau pour la premiere fois  return true or false
+     return  $checker = b_bordereaux::select('code')->where('b_bon_code',$b_bon_code)->exists();//teste existe bordereau pour la premiere fois  return true or false
        if ($checker === true){
           $codeBordereau=  b_bordereaux::orderBy('code', 'desc')->first();
          $lasteborderau=$codeBordereau->code;//return last code bordereau 
@@ -94,6 +94,7 @@ return view('front.compte.BonDeCommande.DetailProjetnBeforeupload')
      }
     }
 public function create(Request $request,$id){
-  return 'hhh';
+  $upload=B_bcommande::where('code','=',$id)->get();  
+  return view('front.compte.Bordereaux.create',['upload'=>$upload]);
 }
     }
