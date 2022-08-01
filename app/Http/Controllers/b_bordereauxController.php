@@ -76,25 +76,31 @@ return view('front.compte.BonDeCommande.DetailProjetnBeforeupload')
           
             $name = $image->getClientOriginalName();
             $filesize= $image->getSize();
+            $image->move(public_path('/bordereau/Arhcitecture'),$name);
            //  $extension = pathinfo($image, PATHINFO_EXTENSION);
             // return $file_name= $image.'-'.time().'.'.$extension;
       
         $data[] = $name; 
           
-    $dossier= $request->submit;
+    $dossier= $request->submit;//return category plan
     $b_bon_code=$request->id;
     $date = Carbon::now('d F Y'); 
         $imageUpload   = new SouCatégorie_plan;
         $imageUpload->Intituleplan= $name;
         $imageUpload->taille_plan=  $filesize;
-        $imageUpload->code_categoriePlan= '1';
+        $dossier= $request->submit;
+        if($dossier === 'Dossier-Architecteure'){$code_categoriePlan='1';}
+        if($dossier === 'Dossier-Géniecivil'){$code_categoriePlan='2';}
+        if($dossier === 'Dossier-Notecalcule'){$code_categoriePlan='3';}
+        if($dossier === 'Dossier-Designextérieur'){$code_categoriePlan='4';}
+        $imageUpload->code_categoriePlan= $code_categoriePlan;
         $imageUpload->datecreation=$date;
         $imageUpload->b_bordereaux_code='1';
         $imageUpload->b_bon_code=$b_bon_code;
         $imageUpload->save();
       
       
-      }
+         }
         
       // $imageUpload=  SouCatégorie_plan::insert($aa);
       
@@ -105,24 +111,18 @@ return view('front.compte.BonDeCommande.DetailProjetnBeforeupload')
        } else {
           return Response::json('error', 400);
        }
-      }
+          }//end $request->hasFile('docSig')
          //echo "existe bordereau";
-     } 
+     } else {
+      return 'suite';
+     }
 
 
 
       
       
-     
-        //return $request->all();
-        $files=$request->file('file');
+    }
         
-        
-
-
-        return 'Dossier-Architecteure';
-      }
-     
 
     }
 

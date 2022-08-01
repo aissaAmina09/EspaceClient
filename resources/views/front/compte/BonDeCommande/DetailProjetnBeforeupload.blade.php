@@ -1455,8 +1455,10 @@
                             <h5> Télécharger les pièces jointe Dossier Génie civil</h5>
                             <form method="post" action="{{route('uploabordereau',$upload )}}" enctype="multipart/form-data"
                             class="dropzone" id="dropzone">
-                          @csrf
-                          <input type="hidden" name="code_categorie" value="{{$upload}}">
+                            {{ csrf_field() }}
+                            <input type="file"  id="filer_input" accept=".pdf" name="docSig[]" multiple="multiple">
+                     
+                            <input type="hidden" name="code_categorie" value="{{$upload}}">
                           <button type="submit" id="button"name="submit"id="button" value="Dossier-Géniecivil" class="btn btn-primary">Envoyer</button>
                       </form>
                         </div>
@@ -1465,9 +1467,11 @@
                             <h5> Télécharger les pièces jointe Note de calcule</h5>
                             <form method="post" action="{{route('uploabordereau',$upload )}}" enctype="multipart/form-data"
                             class="dropzone" id="dropzone">
-                          @csrf
+                            {{ csrf_field() }}
+                          <input type="file"  id="filer_input" accept=".pdf" name="docSig[]" multiple="multiple">
+                     
                           <input type="hidden" name="code_categorie" value="{{$upload}}">
-                          <button type="submit" id="button" id="button" value="Dossier-Notecalcule" class="btn btn-primary">Envoyer</button>
+                          <button type="submit" id="button"name="submit" id="button" value="Dossier-Notecalcule" class="btn btn-primary">Envoyer</button>
                       </form>
                         </div>
                         <div id="m5" style="display:{{ old('m5_CHECK') ? '' : 'none' }};">
@@ -1475,9 +1479,11 @@
                             </h5>
                             <form method="post" action="{{route('uploabordereau',$upload )}}" enctype="multipart/form-data"
                             class="dropzone" id="dropzone">
-                          @csrf
-                          <input type="hidden" name="code_categorie" value="{{$upload}}">
-                          <button type="submit" id="button"id="button" value="Dossier-Designextérieur"  class="btn btn-primary">Envoyer</button>
+                            {{ csrf_field() }}
+                            <input type="file"  id="filer_input" accept=".pdf" name="docSig[]" multiple="multiple">
+                       
+                            <input type="hidden" name="code_categorie" value="{{$upload}}">
+                          <button type="submit" id="button"id="button" name="submit"value="Dossier-Designextérieur"  class="btn btn-primary">Envoyer</button>
                       </form>
 
                             </div>
