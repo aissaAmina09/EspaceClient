@@ -163,6 +163,7 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         Yajra\Datatables\DatatablesServiceProvider::class,
         Barryvdh\DomPDF\ServiceProvider::class,
+
         /*
          * Package Service Providers...
          */
@@ -231,6 +232,8 @@ return [
         'Input' => Illuminate\Support\Facades\Input::class,
         'Datatables' => Yajra\Datatables\Facades\Datatables::class,
         'PDF' => \Barryvdh\DomPDF\Facade::class,
+        'Input' => Illuminate\Support\Facades\Input::class,
+
 
 
     ],

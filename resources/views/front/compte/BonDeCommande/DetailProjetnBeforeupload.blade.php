@@ -1442,10 +1442,11 @@
                     
                         <form method="post" action="{{route('uploabordereau',$upload )}}" enctype="multipart/form-data"
                         class="dropzone" id="dropzone">
-                      @csrf
-                    
+                        {{ csrf_field() }}
+                        <input type="file"  id="filer_input" accept=".pdf" name="docSig[]" multiple="multiple">
+                     
                       <input type="hidden" name="code_categorie" value="{{$upload}}">
-                      <button type="submit" id="button" class="btn btn-primary">Envoyer</button>
+                      <button type="submit" name="submit"id="button" value="Dossier-Architecteure"class="btn btn-primary">Envoyer</button>
 
                   </form>
                         </div>
@@ -1456,7 +1457,7 @@
                             class="dropzone" id="dropzone">
                           @csrf
                           <input type="hidden" name="code_categorie" value="{{$upload}}">
-                          <button type="submit" id="button" class="btn btn-primary">Envoyer</button>
+                          <button type="submit" id="button"name="submit"id="button" value="Dossier-Géniecivil" class="btn btn-primary">Envoyer</button>
                       </form>
                         </div>
                         <br>
@@ -1466,7 +1467,7 @@
                             class="dropzone" id="dropzone">
                           @csrf
                           <input type="hidden" name="code_categorie" value="{{$upload}}">
-                          <button type="submit" id="button" class="btn btn-primary">Envoyer</button>
+                          <button type="submit" id="button" id="button" value="Dossier-Notecalcule" class="btn btn-primary">Envoyer</button>
                       </form>
                         </div>
                         <div id="m5" style="display:{{ old('m5_CHECK') ? '' : 'none' }};">
@@ -1476,7 +1477,7 @@
                             class="dropzone" id="dropzone">
                           @csrf
                           <input type="hidden" name="code_categorie" value="{{$upload}}">
-                          <button type="submit" id="button" class="btn btn-primary">Envoyer</button>
+                          <button type="submit" id="button"id="button" value="Dossier-Designextérieur"  class="btn btn-primary">Envoyer</button>
                       </form>
 
                             </div>
@@ -1622,6 +1623,7 @@
                                 {
                                     autoProcessQueue: false,
                                     maxFilesize: 10,
+                                    paramName: 'docSig',
                                     renameFile: function (file) {
                                         var dt = new Date();
                                         var time = dt.getTime();
@@ -1641,4 +1643,6 @@
     e.preventDefault();
     myDropzone.processQueue();
 });
+
+
                             </script>

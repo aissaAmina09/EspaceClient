@@ -9,6 +9,9 @@ use Carbon\Carbon;
 use Response;
 use DB;
 use App\B_bcommande;
+use Illuminate\Support\Facades\Input;
+
+
 class b_bordereauxController extends Controller
 {
     //
@@ -53,59 +56,74 @@ return view('front.compte.BonDeCommande.DetailProjetnBeforeupload')
         return view('front.compte.Bordereaux.create');
     }
     public function uploabordereau(Request $request,$id){
-      $b_bon_code=$request->id;
-
-      $user=Auth::user()->id; 
-      $date = Carbon::now('d F Y'); 
-      $co='1';
-        /* $order = b_bordereaux::whereRaw('code = (select max(code) from b_bordereaux)')->where('b_bon_code','=', $b_bon_code)->pluck('code');
-          $codeBord = intval($order[0] );
-           $codeBord=$codeBord+1;
-       $data=[
-         'code'=>$codeBord,
-        'code_categorie_plan'=>$co,
-       'b_bon_code'=>$b_bon_code,
-      'date_Reception'=>$date ,
-    ];
-
-      $b_bon_code=$request->id;
-      $user=Auth::user()->id; 
-      $date = Carbon::now('d F Y'); 
-      $co='1';
- 
-       $go= DB::table('b_bordereaux')->insertGetId($data);*/
-     
-      /***upload file store each image */
-        $codeBord=1;
-        $image = $request->file('file');
-          $filesize= $request->file('file')->getSize();  // bytes
-        
-           $filesizekilo = round($filesize / 1024, 2); // kilobytes with two digits number2 
-        $fileInfo = $image->getClientOriginalName();
-        $filename = pathinfo($fileInfo, PATHINFO_FILENAME);
-        $extension = pathinfo($fileInfo, PATHINFO_EXTENSION);
-        $file_name= $filename.'-'.time().'.'.$extension;
-        $image->move(public_path('/bordereau/Arhcitecture'),$file_name);
-        $aa[] = [
-          'Intituleplan' => $fileInfo,
-          'taille_plan' => $filesizekilo,
-          'code_categoriePlan' =>  '1',
-          'datecreation' => $date,
-          'b_bordereaux_code' => $codeBord,
-          'b_bon_code' => $b_bon_code,
-      ];
-      $imageUpload=  SouCatégorie_plan::insert($aa);
-     
-        if( $imageUpload ) {
-          return Response::json('success', 200);//->with('uploaded','Succesiful uploaded');
-          
-      } else {
-         return Response::json('error', 400);
-      }
-       /***End upload file */
-      //  return response()->json(['success'=>$file_name]);
-        //return Redirect::back()->withErrors(['msg' => 'vos fichiers a été bien enregistrez dans la base de données']);
-    
       
-   
-}}
+     // return $data;
+      
+  $dossier= $request->submit;
+  $b_bon_code=$request->id;
+
+
+       $checker = b_bordereaux::select('code')->where('b_bon_code',$b_bon_code)->exists();//teste existe bordereau pour la premiere fois  return true or false
+       if ($checker === true){
+          $codeBordereau=  b_bordereaux::orderBy('code', 'desc')->first();
+         $lasteborderau=$codeBordereau->code;//return last code bordereau 
+         $user=Auth::user()->id; 
+         if ($request->hasFile('docSig')) {
+          foreach($request->file('docSig') as $image)
+          {
+       
+          $destinationPath = '/bordereau/Arhcitecture';
+          
+            $name = $image->getClientOriginalName();
+            $filesize= $image->getSize();
+           //  $extension = pathinfo($image, PATHINFO_EXTENSION);
+            // return $file_name= $image.'-'.time().'.'.$extension;
+      
+        $data[] = $name; 
+          
+    $dossier= $request->submit;
+    $b_bon_code=$request->id;
+    $date = Carbon::now('d F Y'); 
+        $imageUpload   = new SouCatégorie_plan;
+        $imageUpload->Intituleplan= $name;
+        $imageUpload->taille_plan=  $filesize;
+        $imageUpload->code_categoriePlan= '1';
+        $imageUpload->datecreation=$date;
+        $imageUpload->b_bordereaux_code='1';
+        $imageUpload->b_bon_code=$b_bon_code;
+        $imageUpload->save();
+      
+      
+      }
+        
+      // $imageUpload=  SouCatégorie_plan::insert($aa);
+      
+      
+         if( $imageUpload ) {
+           return Response::json('success', 200);//->with('uploaded','Succesiful uploaded');
+           
+       } else {
+          return Response::json('error', 400);
+       }
+      }
+         //echo "existe bordereau";
+     } 
+
+
+
+      
+      
+     
+        //return $request->all();
+        $files=$request->file('file');
+        
+        
+
+
+        return 'Dossier-Architecteure';
+      }
+     
+
+    }
+
+
