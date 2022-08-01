@@ -58,7 +58,7 @@ Route::post('/uploadsigne/{code}','BBClientController@uploadsigne')->name('uploa
 Route::post('/uploadocscanné/{code}','b_bordereauxController@uploadocscanné')->name('uploadocscanné');
 Route::post('/uppload/{code}','b_bordereauxController@uppload')->name('uppload');
 
-
+Route::get('/ajouter_Bordereau/{code}','b_bordereauxController@create')->name('ajouter_Bordereau');
 Route::get('/showsigne/{id}','BBClientController@showsigne')->name('showsigne');
 Route::get('/ajouter_bon_new','CompteController@ajouter_bon_new');
 Route::get('/ajouter_bon','CompteController@ajouter_bon');

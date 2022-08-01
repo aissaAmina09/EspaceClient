@@ -1687,8 +1687,10 @@
                                             <div class="d-flex align-items-center">
                                                 <h5 class="card-title mb-0 flex-grow-1">Historique des Bordereaux</h5>
                                                 <div class="flex-shrink-0">
-                                                    <button type="button" class="btn btn-success add-btn" data-bs-toggle="modal" id="create-btn" data-bs-target="#showModal"><i class="ri-add-line align-bottom me-1"></i> Ajouter un Bordereau</button>
-                                                   
+                                                    
+                                                        <div class="col-auto">
+                                                            <a href="{{route('ajouter_Bordereau',$uses->code)}}" class="btn btn-soft-success"><i class="ri-add-circle-line align-middle me-1"></i> Ajouter un Bordereau</a>
+                                                        </div>
                                                    
                                                 </div>
                                             </div>
@@ -1709,7 +1711,7 @@
                                                                 </th>
                                                                 <th class="sort" data-sort="id">code Bordereau</th>
                                                               
-                                                                <th class="sort" data-sort="product_name">Catégorie Plan</th>
+                                                                <th class="sort" data-sort="product_name">Catégorie Plffan</th>
                                                                 <th class="sort" data-sort="product_name">date_Reception</th>
                                                                
                                                                 <th class="sort" data-sort="city">Action</th>
