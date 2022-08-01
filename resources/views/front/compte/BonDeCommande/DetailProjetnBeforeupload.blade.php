@@ -1325,6 +1325,11 @@
                             <div class="card">
                                 <div class="card-header">
                                     <div class="mt-4 text-muted">
+                                        @if(session()->has('message'))
+    <div class="alert alert-success">
+        {{ session()->get('message') }}
+    </div>
+@endif
                                         <h5 class="fs-14">Description :</h5>
                                         <p>Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. Le Lorem Ipsum est le faux texte standard de .</p>
                                     </div>

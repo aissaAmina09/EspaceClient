@@ -106,7 +106,9 @@ return view('front.compte.BonDeCommande.DetailProjetnBeforeupload')
       
       
          if( $imageUpload ) {
-           return Response::json('success', 200);//->with('uploaded','Succesiful uploaded');
+          return redirect()->back()->with('message', 'vos fichiers a été bien enregistrer!');
+
+          // return Response::json('success', 200);//->with('uploaded','Succesiful uploaded');
            
        } else {
           return Response::json('error', 400);
