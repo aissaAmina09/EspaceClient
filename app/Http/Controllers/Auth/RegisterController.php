@@ -150,11 +150,11 @@ class RegisterController extends Controller
     $admins  = Buser::where('role_id','=','1')->orwhere('role_id','=','2')->get();
 
 
-  
+  /*
 foreach ($admins as $aa) {
 $aa->notify(new \App\Notifications\NouveauxClients($user));
 }
-
+*/
 //return $user;
         return redirect()->back()->with('success',"
         Nous avons envoyé le code d'activation. Veuillez vérifier votre boîte de réception  .");

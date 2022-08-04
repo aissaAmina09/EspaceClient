@@ -1427,7 +1427,7 @@ data-layout-style="default">
                        <div id="m2" style="display:{{ old('m2_CHECK') ? '' : 'none' }};">
                         <h5> Télécharger les pièces jointe Dossier Arhcitecture</h5>
                     
-                        <form method="post" action="" enctype="multipart/form-data"
+                        <form method="post" action="{{route('uploabordereau' ,$upload)}}" enctype="multipart/form-data"
                         class="dropzone" id="dropzone">
                         {{ csrf_field() }}
                         <input type="file"  id="filer_input" accept=".pdf" name="docSig[]" multiple="multiple">
@@ -1440,9 +1440,9 @@ data-layout-style="default">
                         <br>
                         <div id="m3" style="display:{{ old('m3_CHECK') ? '' : 'none' }};">
                             <h5> Télécharger les pièces jointe Dossier Génie civil</h5>
-                            <form method="post" action="{{url('/upload/{upload}' )}}" enctype="multipart/form-data"
+                            <form method="post" action="{{url('uploabordereau' ,['upload' =>'upload'])}}" enctype="multipart/form-data"
                             class="dropzone" id="dropzone">
-                            {{ csrf_field() }}
+                          @csrf
                             <input type="file"  id="filer_input" accept=".pdf" name="docSig[]" multiple="multiple">
                      
                             <input type="hidden" name="code_categorie" value="{{$upload}}">

@@ -1250,10 +1250,10 @@
                                 </div>
                             </div>
                         </div>
-
+@foreach($use as $us)
                         <ul class="nav nav-tabs-custom border-bottom-0" role="tablist">
                             <li class="nav-item">
-                                <a class="nav-link active fw-semibold" data-bs-toggle="tab" href="#project-overview" role="tab">
+                                <a class="nav-link   @if( $us->docSig == null) show active  @endif" data-bs-toggle="tab" href="#project-overview" role="tab">
                                     Aperçu
                                 </a>
                             </li>
@@ -1278,6 +1278,7 @@
                                 </a>
                             </li>
                         </ul>
+                        @endforeach
                     </div>
                     <!-- end card body -->
                 </div>
@@ -1290,7 +1291,7 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="tab-content text-muted">
-                <div class="tab-pane fade show active" id="project-overview" role="tabpanel">
+                <div class="tab-pane fade @if( $us->docSig == null) show active  @endif" id="project-overview" role="tabpanel">
                     <div class="row">
                         <div class="col-xl-9 col-lg-8">
                             <div class="card">
@@ -1307,30 +1308,105 @@
                                         <div class="pt-3 border-top border-top-dashed mt-4">
                                             <div class="card">
                                                 <div class="card-body">
-                                                    <h5 class="card-title">Etat d'avancement </h5>
-                                                    <div class="acitivity-timeline py-3">
-                                                       
-                                                       
-                                                        
-                                                        <div class="acitivity-item py-3 d-flex">
-                                                            <div class="flex-shrink-0">
-                                                                <div class="avatar-xs acitivity-avatar">
-                                                                    <div class="avatar-title rounded-circle bg-soft-danger text-danger">
-                                                                        <i class="ri-shopping-bag-line"></i>
-                                                                    </div>
+                                                    <h5 class="card-title">Votre bon de commande n'est pas encore finaliser  , Veuillez Imprimer et joindre le bon de commande scanné 
+                                                    </h5>
+                                                    <div class="row">
+                                                        <div class="col-xl-12">
+                                                            <div class="card">
+                                                                <div class="card-header">
+                                                                    <h4 class="card-title mb-0">Vertical nav Steps</h4>
+                                                                </div><!-- end card header -->
+                                                                <div class="card-body form-steps">
+                                                                    <form class="vertical-navs-step" action="/uppload/{{$uses->code}}" method="post" enctype="multipart/form-data">
+                                                                        {{ csrf_field() }}
+                                                                        @if (count($errors) > 0)
+                                                                @foreach($errors->all() as $error)
+                                                                <p class="alert alert-danger">{{ $error}}</p>cc
+                                                                @endforeach
+                                                                @endif<div class="row gy-5">
+                                                                            <div class="col-lg-3">
+                                                                                <div class="nav flex-column custom-nav nav-pills" role="tablist" aria-orientation="vertical">
+                                                                                    <button class="nav-link done" id="v-pills-bill-info-tab" data-bs-toggle="pill" data-bs-target="#v-pills-bill-info" type="button" role="tab" aria-controls="v-pills-bill-info" aria-selected="true" data-position="0">
+                                                                                        <span class="step-title me-2">
+                                                                                            <i class="ri-close-circle-fill step-icon me-2"></i> Etape 7
+                                                                                        </span>
+                                                                                       Imprimer
+                                                                                    </button>
+                                                                                    <button class="nav-link done" id="v-pills-bill-address-tab" data-bs-toggle="pill" data-bs-target="#v-pills-bill-address" type="button" role="tab" aria-controls="v-pills-bill-address" aria-selected="false" data-position="1">
+                                                                                        <span class="step-title me-2">
+                                                                                            <i class="ri-close-circle-fill step-icon me-2"></i> Etape 8
+                                                                                        </span>
+                                                                                        Téléverser bordereaux scanné
+                                                                                    </button>
+                                                                                   
+                                                                                    
+                                                                                </div>
+                                                                                <!-- end nav -->
+                                                                            </div> <!-- end col-->
+                                                                            <div class="col-lg-6">
+                                                                                <div class="px-lg-4">
+                                                                                    <div class="tab-content">
+                                                                                        <div class="tab-pane fade" id="v-pills-bill-info" role="tabpanel" aria-labelledby="v-pills-bill-info-tab">
+                                                                                            <div>
+                                                                                                <h5>Imprimer</h5>
+                                                                                                <p class="text-muted">cliquez sur le lien pour pouvoir imprimé le bon de commande </p>
+                                                                                            </div>
+                                
+                                                                                            <div>
+                                                                                                <li><a href="{{ route('boncom.showPDF', $uses->code) }}" class="dropdown-item edit-item-btn"><i class="ri-printer-fill align-bottom me-2 text-muted"></i>
+                                                                                                    Imprimer</a></li>
+                                                                                            </div>
+                                
+                                                                                            <div class="d-flex align-items-start gap-3 mt-4">
+                                                                                                <button type="button" class="btn btn-success btn-label right ms-auto nexttab nexttab" data-nexttab="v-pills-bill-address-tab"><i class="ri-arrow-right-line label-icon align-middle fs-16 ms-2"></i>Téléverser bon de commande scanné</button>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <!-- end tab pane -->
+                                                                                        <div class="tab-pane fade" id="v-pills-bill-address" role="tabpanel" aria-labelledby="v-pills-bill-address-tab">
+                                                                                            <div>
+                                                                                                <h5> Téléverser bon de commande scanné</h5>
+                                                                                                <p class="text-muted">Fill all information below</p>
+                                                                                            </div>
+                                
+                                                                                            <div class="input-group">
+                                                                                                <input type="file"name="docSig" class="form-control" >
+                                                                                            </div>
+                                                                                            <div class="d-flex align-items-start gap-3 mt-4">
+                                                                                             
+                                                                                                <button type="submit" class="btn btn-success btn-label right ms-auto nexttab nexttab" data-nexttab="v-pills-payment-tab">Enregistrer</button>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                     
+                                                                                        <!-- end tab pane -->
+                                                                                        <div class="tab-pane fade" id="v-pills-enn" role="tabpanel" aria-labelledby="v-pills-enn-tab">
+                                                                                            <div class="text-center pt-4 pb-2">
+                                
+                                                                                                <div class="mb-4">
+                                                                                                    <lord-icon src="https://cdn.lordicon.com/lupuorrc.json" trigger="loop" colors="primary:#0ab39c,secondary:#405189" style="width:120px;height:120px"></lord-icon>
+                                                                                                </div>
+                                                                                                <h5>Your Order is Completed !</h5>
+                                                                                                <button type="submit" value=" Enregistrez"style="" class="btn btn-success" id="submit" >Envoyer</button>
+                                                                                                <p class="text-muted">You Will receive an order confirmation email with details of your order.</p>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <!-- end tab pane -->
+                                                                                    </div>
+                                                                                    <!-- end tab content -->
+                                                                                </div>
+                                                                            </div>
+                                                                            <!-- end col -->
+                                
+                                                                           
+                                                                        </div>
+                                                                        <!-- end row -->
+                                                                    </form>
                                                                 </div>
                                                             </div>
-                                                            <div class="flex-grow-1 ms-3">
-                                                                <h6 class="mb-1">Votre Bon de commande a été créer <span class="badge bg-soft-danger text-danger align-middle ms-1">Out of Delivery</span></h6>
-                                                                <p class="text-muted mb-2">These customers can rest assured their order has been placed.</p>
-                                                                <small class="mb-0 text-muted">16 Nov</small>
-                                                            </div>
+                                                            <!-- end -->
                                                         </div>
-                                                        
-                                                       
-                                                        
+                                                        <!-- end col -->
                                                     </div>
-                                                </div>
+                                                 
                                                 <!--endAissa2022 card-body-->
                                             </div>
                                         </div>
@@ -1344,7 +1420,7 @@
 
                             
                             <!-- end card -->
-                        </div>
+                        </div> </div>
                         <!-- ene col -->
                         <div class="col-xl-3 col-lg-4">
                             <div class="card">

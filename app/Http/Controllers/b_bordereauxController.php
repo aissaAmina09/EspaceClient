@@ -45,9 +45,10 @@ return view('front.compte.BonDeCommande.DetailProjetnBeforeupload')
         return view('front.compte.Bordereaux.create');
     }
     public function uploabordereau(Request $request,$id){
-     // return $data;
-  $dossier= $request->submit;
-  $b_bon_code=$request->id;
+    //return $id;
+    //return 'hhh';
+    $dossier= $request->submit;
+    return$b_bon_code=$request->id;
        $checker = b_bordereaux::select('code')->where('b_bon_code',$b_bon_code)->exists();//teste existe bordereau pour la premiere fois  return true or false
        if ($checker === true){
           $codeBordereau=  b_bordereaux::orderBy('code', 'desc')->first();
